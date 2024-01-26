@@ -1,7 +1,6 @@
 package com.tasks.taskapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import io.micrometer.common.lang.NonNull;
 import lombok.Builder;
 import lombok.Data;
@@ -19,16 +18,11 @@ public class Task {
 
     @JsonProperty("priority")
     @NonNull
-    private Integer priority;
+    private Priority priority;
 
-    @JsonProperty("inprogress")
+    @JsonProperty("state")
     @NonNull
-    private Boolean inprogress;
-
-    @JsonProperty("incomplete")
-    @NonNull
-    private Boolean incomplete;
-
+    private State state;
 
 
 }
