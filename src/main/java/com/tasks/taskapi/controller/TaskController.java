@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.tasks.taskapi.model.Task;
 import com.tasks.taskapi.service.TaskService;
@@ -21,6 +22,12 @@ public class TaskController {
     public ResponseEntity<List<Task>> getAllTasks() {
        List<Task> tasks =  taskService.getAllTasks();
        return ResponseEntity.status(HttpStatus.OK).body(tasks);
+    }
+
+    @PostMapping("/post")
+    public ResponseEntity<Task> insertTask(Task taskToInsert) {
+        Task insertedTask = taskService.insertTask(taskToInsert);
+        return ResponseEntity.status(HttpStatus.OK).body(insertedTask);
     }
 
     
