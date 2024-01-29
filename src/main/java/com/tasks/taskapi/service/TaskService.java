@@ -16,6 +16,9 @@ public class TaskService {
 
     public List<Task> getAllTasks() { return taskRepository.getAllTasks(); }
 
-    public Task insertTask(Task task) { return taskRepository.insertTask(task); }
+    public Task insertTask(Task task) {   
+        task.setId(taskRepository.insertTask(task));
+        return task; 
+    }
     
 }
