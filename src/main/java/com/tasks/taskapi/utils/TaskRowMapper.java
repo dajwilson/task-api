@@ -9,7 +9,6 @@ import com.tasks.taskapi.model.Task;
 
 public class TaskRowMapper implements RowMapper<Task> {
 
-
     @Override
     public Task mapRow(ResultSet rs, int RowNum) throws SQLException {
         return Task.builder()

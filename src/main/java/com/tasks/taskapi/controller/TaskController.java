@@ -25,15 +25,14 @@ public class TaskController {
        return ResponseEntity.status(HttpStatus.OK).body(tasks);
     }
 
-    @PostMapping("/post")
+    @PostMapping("/insert")
     public ResponseEntity<Task> insertTask(Task task) {
         Task insertedTask = taskService.insertTask(task);
         return ResponseEntity.status(HttpStatus.OK).body(insertedTask);
     }
 
-    @PutMapping("/put")
+    @PutMapping("/edit")
     public ResponseEntity<Task> editTask(Task task) {
-        System.out.println(task);
         taskService.editTask(task);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
