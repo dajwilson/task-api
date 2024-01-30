@@ -22,7 +22,6 @@ public class TaskRepository {
     private String INSERT_SQL = "INSERT INTO Tasks (Name, Priority, State) Values (?,?,?);";
 
     public List<Task> getAllTasks() {
-        
         return jdbcTemplate.query(SELECT_ALL_SQL, new TaskRowMapper()); 
    }
 
