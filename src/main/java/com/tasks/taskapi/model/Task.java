@@ -23,6 +23,4 @@ public class Task {
     @JsonProperty("state")
     @NonNull
     private State state;
-
-
 }

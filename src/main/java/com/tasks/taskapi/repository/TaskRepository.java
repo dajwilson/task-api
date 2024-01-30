@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
+
+import javax.swing.tree.RowMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.tasks.taskapi.model.Task;
@@ -20,6 +23,8 @@ public class TaskRepository {
     
     private String SELECT_ALL_SQL = "SELECT * FROM Tasks";
     private String INSERT_SQL = "INSERT INTO Tasks (Name, Priority, State) Values (?,?,?);";
+    private String EDIT_SQL = "UPDATE Tasks SET Name = '%s', Priority = '%s', State = '%s' ";
+    private String WHERE_SQL = "WHERE Id = '%d';";
 
     public List<Task> getAllTasks() {
         return jdbcTemplate.query(SELECT_ALL_SQL, new TaskRowMapper()); 
@@ -37,5 +42,13 @@ public class TaskRepository {
         }, keyHolder);
 
         return (int) keyHolder.getKey();
+    }
+
+    public Task editTask(Task task) {
+        String EDITED_EDIT_SQL = String.format(EDIT_SQL + WHERE_SQL, task.getName(), 
+            task.getPriority().name(), task.getState().name(), task.getId() );
+
+        jdbcTemplate.execute(EDITED_EDIT_SQL);
+        return task;
     }
 }

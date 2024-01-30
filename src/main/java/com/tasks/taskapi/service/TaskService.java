@@ -20,5 +20,9 @@ public class TaskService {
         task.setId(taskRepository.insertTask(task));
         return task; 
     }
+
+    public Task editTask(Task task) {
+        return taskRepository.editTask(task);
+    }
     
 }
