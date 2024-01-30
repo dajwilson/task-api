@@ -21,8 +21,8 @@ public class TaskService {
         return task; 
     }
 
-    public Task editTask(Task task) {
-        return taskRepository.editTask(task);
+    public void editTask(Task task) {
+        taskRepository.editTask(task);
     }
-    
+
 }

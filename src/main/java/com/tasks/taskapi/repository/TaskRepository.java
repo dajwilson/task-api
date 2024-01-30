@@ -44,11 +44,9 @@ public class TaskRepository {
         return (int) keyHolder.getKey();
     }
 
-    public Task editTask(Task task) {
+    public void editTask(Task task) {
         String EDITED_EDIT_SQL = String.format(EDIT_SQL + WHERE_SQL, task.getName(), 
             task.getPriority().name(), task.getState().name(), task.getId() );
-
-        jdbcTemplate.execute(EDITED_EDIT_SQL);
-        return task;
+        jdbcTemplate.update(EDITED_EDIT_SQL);
     }
 }

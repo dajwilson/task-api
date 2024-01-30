@@ -33,7 +33,8 @@ public class TaskController {
 
     @PutMapping("/put")
     public ResponseEntity<Task> editTask(Task task) {
-        Task editedTask = taskService.editTask(task);
-        return ResponseEntity.status(HttpStatus.OK).body(editedTask);
+        System.out.println(task);
+        taskService.editTask(task);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
