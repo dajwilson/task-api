@@ -15,5 +15,10 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     public List<Task> getAllTasks() { return taskRepository.getAllTasks(); }
+
+    public Task insertTask(Task task) {   
+        task.setId(taskRepository.insertTask(task));
+        return task; 
+    }
     
 }
