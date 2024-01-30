@@ -25,12 +25,8 @@ public class TaskController {
     }
 
     @PostMapping("/post")
-    public ResponseEntity<Task> insertTask(Task taskToInsert) {
-        Task insertedTask = taskService.insertTask(taskToInsert);
+    public ResponseEntity<Task> insertTask(Task task) {
+        Task insertedTask = taskService.insertTask(task);
         return ResponseEntity.status(HttpStatus.OK).body(insertedTask);
     }
-
-    
-
-    
 }

@@ -18,10 +18,8 @@ public class TaskRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
-    
     private String SELECT_ALL_SQL = "SELECT * FROM Tasks";
     private String INSERT_SQL = "INSERT INTO Tasks (Name, Priority, State) Values (?,?,?);";
-
 
     public List<Task> getAllTasks() {
         
@@ -32,7 +30,7 @@ public class TaskRepository {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-            .prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
+                .prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, task.getName());
             ps.setString(2, task.getPriority().name());
             ps.setString(3, task.getState().name());
