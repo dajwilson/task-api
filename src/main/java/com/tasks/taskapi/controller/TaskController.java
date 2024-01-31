@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.tasks.taskapi.model.Task;
 import com.tasks.taskapi.service.TaskService;
@@ -24,9 +25,15 @@ public class TaskController {
        return ResponseEntity.status(HttpStatus.OK).body(tasks);
     }
 
-    @PostMapping("/post")
+    @PostMapping("/insert")
     public ResponseEntity<Task> insertTask(Task task) {
         Task insertedTask = taskService.insertTask(task);
         return ResponseEntity.status(HttpStatus.OK).body(insertedTask);
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Task> editTask(Task task) {
+        taskService.editTask(task);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
