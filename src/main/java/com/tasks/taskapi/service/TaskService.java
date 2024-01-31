@@ -25,4 +25,8 @@ public class TaskService {
         taskRepository.editTask(task);
     }
 
+    public void deleteTask(Task task) {
+        taskRepository.deleteTask(task);
+    }
+
 }

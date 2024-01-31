@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,6 +35,12 @@ public class TaskController {
     @PutMapping("/edit")
     public ResponseEntity<Task> editTask(Task task) {
         taskService.editTask(task);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Task> deleteTask(Task task) {
+        taskService.deleteTask(task);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
