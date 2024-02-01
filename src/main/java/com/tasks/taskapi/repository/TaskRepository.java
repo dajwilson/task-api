@@ -24,6 +24,7 @@ public class TaskRepository {
     private String SELECT_ALL_SQL = "SELECT * FROM Tasks";
     private String INSERT_SQL = "INSERT INTO Tasks (Name, Priority, State) Values (?,?,?);";
     private String EDIT_SQL = "UPDATE Tasks SET Name = '%s', Priority = '%s', State = '%s' ";
+    private String DELETE_SQL = "DELETE FROM Tasks ";
     private String WHERE_SQL = "WHERE Id = '%d';";
 
     public List<Task> getAllTasks() {
@@ -48,5 +49,10 @@ public class TaskRepository {
         String formattedEditSql  = String.format(EDIT_SQL + WHERE_SQL, task.getName(), 
             task.getPriority().name(), task.getState().name(), task.getId() );
         jdbcTemplate.update(formattedEditSql);
+    }
+
+    public void deleteTask(int id) {
+        String formattedDeleteSql = String.format(DELETE_SQL + WHERE_SQL, id);
+        jdbcTemplate.update(formattedDeleteSql);
     }
 }
