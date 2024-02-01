@@ -32,9 +32,9 @@ public class TaskRepository {
         return jdbcTemplate.query(SELECT_SQL, new TaskRowMapper()); 
    }
 
-   public Task selectTaskById(int id) {
-        String selectByIdSql = String.format(SELECT_TOP_1_SQL + WHERE_SQL, id);
-        return jdbcTemplate.queryForObject(selectByIdSql, new TaskRowMapper());
+   public Task getTaskById(int id) {
+        String getByIdSql = String.format(SELECT_TOP_1_SQL + WHERE_SQL, id);
+        return jdbcTemplate.queryForObject(getByIdSql, new TaskRowMapper());
    }
 
     public int insertTask(Task task) {
