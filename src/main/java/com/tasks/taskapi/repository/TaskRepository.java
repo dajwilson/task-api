@@ -51,8 +51,8 @@ public class TaskRepository {
         jdbcTemplate.update(formattedEditSql);
     }
 
-    public void deleteTask(Task task) {
-        String formattedDeleteSql = String.format(DELETE_SQL + WHERE_SQL, task.getId());
+    public void deleteTask(int id) {
+        String formattedDeleteSql = String.format(DELETE_SQL + WHERE_SQL, id);
         jdbcTemplate.update(formattedDeleteSql);
     }
 }
