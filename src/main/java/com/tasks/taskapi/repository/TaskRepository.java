@@ -21,14 +21,20 @@ public class TaskRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
-    private String SELECT_ALL_SQL = "SELECT * FROM Tasks";
+    private String SELECT_SQL = "SELECT * FROM Tasks";
+    private String SELECT_TOP_1_SQL = "SELECT TOP 1 * FROM Tasks ";
     private String INSERT_SQL = "INSERT INTO Tasks (Name, Priority, State) Values (?,?,?);";
     private String EDIT_SQL = "UPDATE Tasks SET Name = '%s', Priority = '%s', State = '%s' ";
     private String DELETE_SQL = "DELETE FROM Tasks ";
     private String WHERE_SQL = "WHERE Id = '%d';";
 
     public List<Task> getAllTasks() {
-        return jdbcTemplate.query(SELECT_ALL_SQL, new TaskRowMapper()); 
+        return jdbcTemplate.query(SELECT_SQL, new TaskRowMapper()); 
+   }
+
+   public Task getTaskById(int id) {
+        String getByIdSql = String.format(SELECT_TOP_1_SQL + WHERE_SQL, id);
+        return jdbcTemplate.queryForObject(getByIdSql, new TaskRowMapper());
    }
 
     public int insertTask(Task task) {
@@ -55,4 +61,5 @@ public class TaskRepository {
         String formattedDeleteSql = String.format(DELETE_SQL + WHERE_SQL, id);
         jdbcTemplate.update(formattedDeleteSql);
     }
+
 }
