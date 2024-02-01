@@ -45,9 +45,9 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Task> deleteTask(Task task) {
-        taskService.deleteTask(task);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Task> deleteTask(@PathVariable("id") int id) {
+        taskService.deleteTask(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
