@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,12 @@ public class TaskController {
     public ResponseEntity<List<Task>> getAllTasks() {
        List<Task> tasks =  taskService.getAllTasks();
        return ResponseEntity.status(HttpStatus.OK).body(tasks);
+    }
+
+    @GetMapping("/get-by-id/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable String id) {
+        Task task = taskService.getTaskById(Integer.parseInt(id));
+        return ResponseEntity.status(HttpStatus.OK).body(task);
     }
 
     @PostMapping("/insert")
