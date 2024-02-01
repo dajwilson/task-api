@@ -28,7 +28,7 @@ public class TaskController {
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable("id") int id) {
+    public ResponseEntity<Task> getTaskById(@PathVariable int id) {
         Task task = taskService.getTaskById(id);
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }
@@ -46,7 +46,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Task> deleteTask(@PathVariable("id") int id) {
+    public ResponseEntity<Task> deleteTask(@PathVariable int id) {
         taskService.deleteTask(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
