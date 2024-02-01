@@ -28,8 +28,8 @@ public class TaskController {
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable String id) {
-        Task task = taskService.getTaskById(Integer.parseInt(id));
+    public ResponseEntity<Task> getTaskById(@PathVariable("id") int id) {
+        Task task = taskService.getTaskById(id);
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }
 
