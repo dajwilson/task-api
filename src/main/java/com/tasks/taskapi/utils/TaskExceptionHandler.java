@@ -36,7 +36,6 @@ public class TaskExceptionHandler extends ResponseEntityExceptionHandler {
             String bodyOfResponse = "updated failed, so sorry";
             return ResponseEntity.status(HttpStatus.OK).body(bodyOfResponse);
     }
-    
-   
+
 }
 
