@@ -9,6 +9,8 @@ import javax.swing.tree.RowMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.tasks.taskapi.exception.FailedUpdateException;
 import com.tasks.taskapi.model.Task;
 import com.tasks.taskapi.utils.TaskRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -51,10 +53,11 @@ public class TaskRepository {
         return (int) keyHolder.getKey();
     }
 
-    public void editTask(Task task) {
+    public void editTask(Task task) throws FailedUpdateException {
         String formattedEditSql  = String.format(EDIT_SQL + WHERE_SQL, task.getName(), 
             task.getPriority().name(), task.getState().name(), task.getId() );
         jdbcTemplate.update(formattedEditSql);
+        throw new FailedUpdateException();
     }
 
     public void deleteTask(int id) {

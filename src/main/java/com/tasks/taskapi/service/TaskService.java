@@ -3,6 +3,8 @@ package com.tasks.taskapi.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.tasks.taskapi.exception.FailedUpdateException;
 import com.tasks.taskapi.model.Task;
 import com.tasks.taskapi.repository.TaskRepository;
 
@@ -25,7 +27,7 @@ public class TaskService {
         return task; 
     }
 
-    public void editTask(Task task) {
+    public void editTask(Task task) throws FailedUpdateException {
         taskRepository.editTask(task);
     }
 
