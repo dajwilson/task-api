@@ -44,8 +44,8 @@ public class TaskController {
 
     @PutMapping("/edit")
     public ResponseEntity<Task> editTask(Task task) throws FailedUpdateException {
-            taskService.editTask(task);
-            return ResponseEntity.status(HttpStatus.OK).build();
+        taskService.editTask(task);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/delete/{id}")
