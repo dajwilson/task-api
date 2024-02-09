@@ -56,8 +56,9 @@ public class TaskRepository {
     public void editTask(Task task) throws FailedUpdateException {
         String formattedEditSql  = String.format(EDIT_SQL + WHERE_SQL, task.getName(), 
             task.getPriority().name(), task.getState().name(), task.getId() );
-        jdbcTemplate.update(formattedEditSql);
-        throw new FailedUpdateException();
+        if (jdbcTemplate.update(formattedEditSql) == 0) {
+            throw new FailedUpdateException();
+        }
     }
 
     public void deleteTask(int id) {
