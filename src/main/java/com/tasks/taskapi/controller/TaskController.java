@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.tasks.taskapi.exception.FailedUpdateException;
 import com.tasks.taskapi.model.Task;
 import com.tasks.taskapi.service.TaskService;
+import com.tasks.taskapi.utils.TaskExceptionHandler;
 
 @Controller
 @RequestMapping("/tasks")
@@ -28,7 +31,7 @@ public class TaskController {
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable("id") int id) {
+    public ResponseEntity<Task> getTaskById(@PathVariable int id) {
         Task task = taskService.getTaskById(id);
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }
@@ -40,13 +43,13 @@ public class TaskController {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity<Task> editTask(Task task) {
+    public ResponseEntity<Task> editTask(Task task) throws FailedUpdateException {
         taskService.editTask(task);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Task> deleteTask(@PathVariable("id") int id) {
+    public ResponseEntity<Task> deleteTask(@PathVariable int id) {
         taskService.deleteTask(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
